@@ -4,7 +4,7 @@ const app = new Koa();
 const bodyParser = require('koa-bodyparser');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/test',{
+mongoose.connect('mongodb://localhost:27017/mock',{
   useNewUrlParser: true,
   useFindAndModify: false,
   useCreateIndex: true,
