@@ -37,7 +37,17 @@ router.patch('/test/:id', async ctx => {
 });
 
 router.get('/test', async ctx => {
-  let result = await Test.find({});
+  let page = parseInt(ctx.query.page);
+  let size = parseInt(ctx.query.size);
+  let key = ctx.query.q;
+
+  let condition = {};
+  if(key){
+    const reg = new RegExp(key, 'i');
+	  condition.key = { $regex: reg };
+  }
+
+  let result = await Test.find(condition).skip((page - 1) * size).limit(size).sort({ value: 1 });
   ctx.body = result;
   ctx.status = 200;
 });
