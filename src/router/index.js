@@ -47,7 +47,7 @@ router.get('/test', async ctx => {
 	  condition.key = { $regex: reg };
   }
 
-  let result = await Test.find(condition).skip((page - 1) * size).limit(size).sort({ value: 1 });
+  let result = await Test.find(condition).sort({ value: 1 }).skip((page - 1) * size).limit(size);
   ctx.body = result;
   ctx.status = 200;
 });
